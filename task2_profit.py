@@ -1,20 +1,23 @@
 from typing import Callable, Iterator
 
+
 def generator_numbers(text: str) -> Iterator[float]:
-    for num in text.split():
+    parts = text.split()
+    for num in parts[1:-1]:  # якщо напочатку або в кінці не рахуємо
         try:
-            yield float(num) #повертає число
-        except ValueError: 
-            continue #при винекненні помилки що повертається не число просто пропускаємо
-        
-        
-        
+            yield float(num)  # повертає число
+        except ValueError:
+            continue  # помилку пропускаєм
+
+
 def sum_profit(text: str, func: Callable[[str], Iterator[float]]) -> float:
     return round(sum(func(text)), 2)
 
+
 if __name__ == "__main__":
     text = (
-        "Загальний дохід працівника складається з декількох частин: 1000.01 як основний дохід, "
+        "Загальний дохід працівника складається з декількох частин: "
+        "1000.01 як основний дохід, "
         "доповнений додатковими надходженнями 27.45 і 324.00 доларів."
     )
     total_income = sum_profit(text, generator_numbers)
