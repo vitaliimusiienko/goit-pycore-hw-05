@@ -1,5 +1,7 @@
-from task_4_scripts_for_console_bot import parse_input, add_contact, change_contact, show_phone, show_all
-    
+from task_4_scripts_for_console_bot import (add_contact, change_contact,
+                                            parse_input, show_all, show_phone)
+
+
 def main():
     print("Вітаю у боті-ассистенті")
     contacts = {}
@@ -8,9 +10,9 @@ def main():
         if not user_input:
             continue
         command, *args = parse_input(user_input)
-        
+
         match command:
-            case "exit"|"close": 
+            case "exit" | "close":
                 print("До побачення!")
                 break
             case "hello":
@@ -32,13 +34,13 @@ def main():
                     "  phone <Ім'я> \n"
                     "  all\n"
                     "  close | exit"
-                                    )
+                )
             case _:
-                print("Невалідна команда, скористайтесь командою help, щоб дізнатись про доступні команди")
-                
+                print(
+                    "Невалідна команда, скористайтесь командою help,"
+                    "щоб дізнатись про доступні команди"
+                )
+
+
 if __name__ == "__main__":
     main()
-    
-
-
-
